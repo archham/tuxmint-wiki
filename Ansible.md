@@ -1,3 +1,13 @@
+---
+title: Ansible
+description: 
+published: true
+date: 2026-03-16T22:22:50.618Z
+tags: ansible
+editor: markdown
+dateCreated: 2026-03-16T13:50:18.538Z
+---
+
 ![Test](Ansible_logo.svg "Test") ANSIBLE - PLAYBOOK FOR LAMP HAPROXY
 
 <https://www.bogotobogo.com/DevOps/Ansible/Ansible-Playbook-Lamp-HAProxy.php>
@@ -378,5 +388,3 @@ ansible-navigator lint PLAYBOOK
 
 ansible servera -m ping #ping servera via ansible
 ```
-
-[Category:Ansible](Category:Ansible "Category:Ansible"){.wikilink}
