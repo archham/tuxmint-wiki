@@ -2,13 +2,15 @@
 title: AdGuardHome
 description: 
 published: true
-date: 2026-03-16T22:24:37.954Z
+date: 2026-03-16T22:25:33.635Z
 tags: dns, linux
 editor: markdown
 dateCreated: 2026-03-16T13:50:13.451Z
 ---
 
-AdGuard Home is a way of keeping your browser experience pleasant and to protect you from unwanted trackers.
+AdGuard Home[^1][^2] is
+a way of keeping your browser experience pleasant and to protect you
+from unwanted trackers.
 
 ## Preparation
 
