@@ -2,7 +2,7 @@
 title: Mediawiki
 description: 
 published: true
-date: 2026-03-16T13:56:58.904Z
+date: 2026-03-16T13:57:05.593Z
 tags: docker
 editor: markdown
 dateCreated: 2026-03-16T13:51:37.465Z
