@@ -2,7 +2,7 @@
 title: AdGuardHome
 description: 
 published: true
-date: 2026-03-17T16:56:56.908Z
+date: 2026-03-17T16:57:19.986Z
 tags: dns, linux
 editor: markdown
 dateCreated: 2026-03-16T13:50:13.451Z
@@ -62,8 +62,6 @@ sudo /opt/AdGuardHome/AdGuardHome -s start|stop|restart|status|install|uninstall
 ## Configuration
 
 tbd
-
-<references />
 
 [^1]: <https://github.com/AdguardTeam/AdguardHome>
 [^2]: <https://adguard.com/en/adguard-home/overview.html>
