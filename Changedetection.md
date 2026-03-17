@@ -1,3 +1,13 @@
+---
+title: Changedetection
+description: 
+published: true
+date: 2026-03-17T16:03:20.087Z
+tags: docker
+editor: markdown
+dateCreated: 2026-03-16T13:50:27.590Z
+---
+
 ![Changedetection Logo](Changedetection_Logo.png "Changedetection Logo")
 
 ## Introduction
@@ -157,5 +167,3 @@ find $BACKUP_DIR -type f -name 'changedetection_*.tar.gz' | sort | head -n -${GE
 # List backups
 ls -l $BACKUP_DIR
 ```
-
-[Category:Docker](Category:Docker "Category:Docker"){.wikilink}
