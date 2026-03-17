@@ -1,3 +1,13 @@
+---
+title: Conda
+description: 
+published: true
+date: 2026-03-17T16:05:03.082Z
+tags: conda, anaconda, python
+editor: markdown
+dateCreated: 2026-03-16T13:50:32.086Z
+---
+
 ## Introduction
 
 Conda is a powerful command line tool for package and environment
@@ -103,12 +113,6 @@ python run_booknlp.py
 ```
 
 ## References
-
-<references />
-
-[index.php?title=Category:Conda](index.php?title=Category:Conda "index.php?title=Category:Conda"){.wikilink}
-[index.php?title=Category:Anaconda](index.php?title=Category:Anaconda "index.php?title=Category:Anaconda"){.wikilink}
-[index.php?title=Category:Python](index.php?title=Category:Python "index.php?title=Category:Python"){.wikilink}
 
 [^1]: <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>
 
