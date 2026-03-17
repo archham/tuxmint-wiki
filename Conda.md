@@ -2,7 +2,7 @@
 title: Conda
 description: 
 published: true
-date: 2026-03-17T16:05:58.599Z
+date: 2026-03-17T16:45:44.561Z
 tags: conda, anaconda, python
 editor: markdown
 dateCreated: 2026-03-16T13:50:32.086Z
@@ -10,9 +10,7 @@ dateCreated: 2026-03-16T13:50:32.086Z
 
 ## Introduction
 
-Conda is a powerful command line tool for package and environment
-management that runs on Windows, macOS, and Linux.[^1] 
-
+Conda is a powerful command line tool for package and environment management that runs on Windows, macOS, and Linux.[^1] 
 This page is for general info, how to install and use it.
 
 ## Installation
@@ -23,15 +21,14 @@ This page is for general info, how to install and use it.
 
 - Internet
 - Rocky Linux 9[^2]
-  - Packages: git pip libXi libXtst libXrandr libXcursor alsa-lib
-    mesa-libEGL libXcomposite libXScrnSaver libXdamage mesa-libGL
+  - Packages: `git pip libXi libXtst libXrandr libXcursor alsa-lib mesa-libEGL libXcomposite libXScrnSaver libXdamage mesa-libGL`
 
-#### Methods / Possibilities {#methods_possibilities}
+#### Methods / Possibilities
 
 It is possible to install Conda[^3] directly with a script (recommended)
 or manually.
 
-##### Installation witch script (12/2024) {#installation_witch_script_122024}
+##### Installation witch script (12/2024)
 
 Remember to check for the newest script for the installation![^4]
 
@@ -83,7 +80,7 @@ conda activate <NAME_OF_ENV>
 conda deactivate
 ```
 
-### Example of a project (booknlp)[^5] {#example_of_a_project_booknlp}
+### Example of a project (booknlp)[^5]
 
 ``` bash
 # Install booknlp
@@ -115,11 +112,7 @@ python run_booknlp.py
 ## References
 
 [^1]: <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>
-
 [^2]: <https://www.atlantic.net/vps-hosting/how-to-install-anaconda-python-on-rocky-linux-8/#step-3-install-anaconda>
-
 [^3]: <https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html>
-
 [^4]: <https://repo.anaconda.com/archive/>
-
 [^5]: <https://github.com/booknlp/booknlp>
