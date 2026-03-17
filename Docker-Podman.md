@@ -2,7 +2,7 @@
 title: Docker-Podman
 description: 
 published: true
-date: 2026-03-17T16:36:56.805Z
+date: 2026-03-17T16:43:14.679Z
 tags: docker, podman, container
 editor: markdown
 dateCreated: 2026-03-16T13:50:36.723Z
@@ -76,12 +76,11 @@ docker run -d \
   nginx:latest
 ```
 
-## Networking Docker {#networking_docker}
+## Networking Docker
 
-### Change default networking {#change_default_networking}
+### Change default networking
 
-Make sure to define a default network for the bridge mode, otherwise you
-may run into trouble of already used networks
+Make sure to define a default network for the bridge mode, otherwise you may run into trouble of already used networks
 
 ``` bash
 ip route show #check networks
@@ -119,9 +118,9 @@ docker network ls #verify settings
 docker network inspect docker_default
 ```
 
-## Networking Podman {#networking_podman}
+## Networking Podman
 
-### Change default networking {#change_default_networking_1}
+### Change default networking
 
 Container engines like Podman & Buildah read **containers.conf** file, if it exists and modify the defaults for running containers on the host. containers.conf uses a TOML format that can be easily modified and versioned.
 
