@@ -2,26 +2,13 @@
 title: Ansible
 description: 
 published: true
-date: 2026-03-17T16:49:04.199Z
+date: 2026-03-17T16:55:34.523Z
 tags: ansible
 editor: markdown
 dateCreated: 2026-03-16T13:50:18.538Z
 ---
 
-ANSIBLE - PLAYBOOK FOR LAMP HAPROXY[^1]
-<https://www.bogotobogo.com/DevOps/Ansible/Ansible-Playbook-Lamp-HAProxy.php>
-
-In this tutorial, we\'re going to use one of Ansible\'s most complete example playbooks as a template: lamp_haproxy
-<https://www.qnap.com/en/how-to/tutorial/article/how-to-use-reverse-proxy-to-improve-secure-remote-connections>
-
-Manage HAProxy / Nginx / Apache from Web Interface using Roxy-WI
-<https://computingforgeeks.com/manage-haproxy-nginx-apache-from-web-interface-using-roxy-wi/?expand_article=1>
-
-Ansible-navigator build your own execution enviroment!
-<https://www.dbi-services.com/blog/create-and-manage-ansible-execution-environments/>
-
-## To be sorted {#to_be_sorted}
-
+## To be sorted
 ``` bash
 # How to install and run Ansible on one node
 ## including os-update role
@@ -383,3 +370,13 @@ ansible-navigator lint PLAYBOOK
 
 ansible servera -m ping #ping servera via ansible
 ```
+## Ideas
+* ANSIBLE - PLAYBOOK FOR LAMP HAPROXY[^1]
+* In this tutorial, we\'re going to use one of Ansible\'s most complete example playbooks as a template: lamp_haproxy[^2]
+* Manage HAProxy / Nginx / Apache from Web Interface using Roxy-WI[^3]
+* Ansible-navigator build your own execution enviroment![^4]
+## References
+[^1]: <https://www.bogotobogo.com/DevOps/Ansible/Ansible-Playbook-Lamp-HAProxy.php>
+[^2]: <https://www.qnap.com/en/how-to/tutorial/article/how-to-use-reverse-proxy-to-improve-secure-remote-connections>
+[^3]: <https://computingforgeeks.com/manage-haproxy-nginx-apache-from-web-interface-using-roxy-wi/?expand_article=1>
+[^4]: <https://www.dbi-services.com/blog/create-and-manage-ansible-execution-environments/>
