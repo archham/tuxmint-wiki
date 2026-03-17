@@ -2,7 +2,7 @@
 title: Docker-Podman
 description: 
 published: true
-date: 2026-03-17T16:35:57.989Z
+date: 2026-03-17T16:36:56.805Z
 tags: docker, podman, container
 editor: markdown
 dateCreated: 2026-03-16T13:50:36.723Z
@@ -52,11 +52,7 @@ docker exec -it c4d3132c4212 bash
 
 Docker compose is a very useful method to run one or more containers repeatedly in a controlled manner even with dependencies.
 
-### Options
-
-There are many possible options that you can add.
-
-#### Selinux
+### Selinux
 
 If you use `selinux` you can add the `z` or `Z` options to modify the selinux label of the host file or directory being mounted into the container. This affects the file or directory on the host machine itself and can have consequences outside of the scope of Docker.
 
