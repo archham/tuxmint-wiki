@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-01T15:00:07.699Z
+date: 2026-04-01T15:11:31.213Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -143,6 +143,9 @@ cda
 
 # Enter a shell into the container
 ./bin/shell
+
+# Current container still has TeX Live 2025 so no longer update. Change repo
+tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
 
 # Update TeX Live Manager
 tlmgr update --self
