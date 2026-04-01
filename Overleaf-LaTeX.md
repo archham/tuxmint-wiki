@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-01T14:31:33.904Z
+date: 2026-04-01T14:37:42.931Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -28,6 +28,9 @@ sudo dnf install git
 ## dnf RHEL based (RHEL, Rocky, Alma, Centos, etc.)
 ## apt Debian based (Debian, Ubuntu, Mint, etc.)
 ## and so on
+
+# add dedicated application user
+adduser overleaf
 
 # Be sure that your designated user is part of the docker group
 ## Check it when you are logged in
