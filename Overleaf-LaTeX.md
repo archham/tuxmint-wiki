@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-01T14:06:22.366Z
+date: 2026-04-01T14:31:33.904Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -165,7 +165,7 @@ cda
 ./bin/upgrade
 
 # Stop automaticly started containers
-./bin/Stop
+./bin/stop
 
 # Start service again
 systemctl start overleaf.service
