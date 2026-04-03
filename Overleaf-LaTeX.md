@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-03T09:37:45.336Z
+date: 2026-04-03T09:45:22.665Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -81,10 +81,11 @@ ls config
 vi config/overleaf.rc
 
 ----------------START-----------------
-
+# Gets reachable outside of the server. Do not use if you are using the provided TLS proxy.
 ## OVERLEAF_LISTEN_IP=127.0.0.1
-OVERLEAF_LISTEN_IP=<IP_OF_VM>
+OVERLEAF_LISTEN_IP=0.0.0.0
 
+# Disable this because it is a Pro feature
 ## SIBLING_CONTAINERS_ENABLED=true
 SIBLING_CONTAINERS_ENABLED=false
 
@@ -93,6 +94,7 @@ OVERLEAF_LOG_PATH=logs
 
 ----------------STOP------------------
 ## Note: we recommend that you re-create the docker containers after changing anything in `overleaf.rc` or `variables.env`, by running `bin/docker-compose down`, followed by `bin/up`
+mkdir logs
 
 # Add the http service to the local firewall
 sudo firewall-cmd --add-service=http --permanent
