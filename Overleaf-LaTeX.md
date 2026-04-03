@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-01T15:15:08.762Z
+date: 2026-04-03T08:20:30.385Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -17,7 +17,7 @@ It is intended that you **run** this **server** **behind a reverse proxy**. It i
 ### Preparation
 
 - Linux server
-- git & docker
+- ``git`` ``docker`` ``openssl``
 - Reverse proxy (not included in this tutorial)
 
 ``` bash
