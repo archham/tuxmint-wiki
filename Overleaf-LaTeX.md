@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-03T08:20:30.385Z
+date: 2026-04-03T09:12:14.257Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -144,7 +144,7 @@ cda
 # Enter a shell into the container
 ./bin/shell
 
-# Current container still has TeX Live 2025 so no longer update. Change repo
+# Current container (6.1.2) still has TeX Live 2025 so no longer update. Change repo to historic
 tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final
 
 # Update TeX Live Manager
@@ -157,6 +157,9 @@ TeX Live (https://tug.org/texlive) version 2024
 
 # Install full scheme (takes about 10 to 20 min)
 tlmgr install scheme-full
+
+# **Important**: From `3.3.0` release onwards running `tlmgr path add` is required again after every use of `tlmgr install`, in order to correctly symlink all the binaries into the system path.
+tlmgr path add
 
 # Exit container shell
 exit
