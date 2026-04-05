@@ -2,7 +2,7 @@
 title: Proton
 description: Infos about Proton.me services
 published: true
-date: 2026-04-05T09:27:47.024Z
+date: 2026-04-05T09:31:38.500Z
 tags: docker, proton, mail
 editor: markdown
 dateCreated: 2026-04-05T08:42:00.076Z
@@ -44,5 +44,31 @@ volumes:
   protonmail:
     name: protonmail
 ```
-Initialize
+Initialization must be done once
 ``cd /opt/prod-protonmail-bridge-docker/ && docker compose run protonmail-bridge init``
+```bash
+            Welcome to Proton Mail Bridge interactive shell
+                              ___....___
+    ^^                __..-:'':__:..:__:'':-..__
+                  _.-:__:.-:'':  :  :  :'':-.:__:-._
+                .':.-:  :  :  :  :  :  :  :  :  :._:'.
+             _ :.':  :  :  :  :  :  :  :  :  :  :  :'.: _
+            [ ]:  :  :  :  :  :  :  :  :  :  :  :  :  :[ ]
+            [ ]:  :  :  :  :  :  :  :  :  :  :  :  :  :[ ]
+   :::::::::[ ]:__:__:__:__:__:__:__:__:__:__:__:__:__:[ ]:::::::::::
+   !!!!!!!!![ ]!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!![ ]!!!!!!!!!!!
+   ^^^^^^^^^[ ]^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[ ]^^^^^^^^^^^
+            [ ]                                        [ ]
+            [ ]                                        [ ]
+      jgs   [ ]                                        [ ]
+    ~~^_~^~/   \~^-~^~ _~^-~_^~-^~_^~~-^~_~^~-~_~-^~_^/   \~^ ~~_ ^
+>>> login
+Username: <YOUR_USER>
+Password: <YOUR_PW>
+Authenticating ... 
+Two factor code: 123456
+Account archham was added successfully.
+>>> A sync has begun for <YOUR_USER>.
+Sync (<YOUR_USER>): 1.8% (Elapsed: 0.5s, ETA: 26.3s)
+...
+```
