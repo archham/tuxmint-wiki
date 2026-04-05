@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-05T08:36:44.586Z
+date: 2026-04-05T16:10:23.296Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -142,7 +142,14 @@ systemctl start overleaf.service
 systemctl status overleaf.service
 ```
 
-#### Tex Live full install {#tex_live_full_install}
+#### Create admin user [^1]
+In a browser, open http://localhost/launchpad. You should see a form with email and password fields. Fill these in with the credentials you want to use as the admin account, then click "Register".
+
+Then click the link to go to the login page (http://localhost/login). Enter the credentials. Once you are logged in, you will be taken to a welcome page.
+
+Click the green button at the bottom of the page to start using Overleaf.
+
+#### Tex Live full install
 
 By default Overleaf Community Edition installs LaTeX in a \"lite\" version. In order to use the full capabilities of Overleaf it is advised to fully install LaTex (all packages).
 
@@ -215,3 +222,4 @@ systemctl start overleaf.service
 
 ## Source: https://github.com/overleaf/toolkit/blob/master/doc/upgrading.md
 ```
+[^1]: <https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md#create-the-first-admin-account>
