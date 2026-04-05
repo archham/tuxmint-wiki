@@ -2,7 +2,7 @@
 title: Proton
 description: Infos about Proton.me services
 published: true
-date: 2026-04-05T09:04:52.337Z
+date: 2026-04-05T09:18:31.720Z
 tags: docker, proton, mail
 editor: markdown
 dateCreated: 2026-04-05T08:42:00.076Z
@@ -33,8 +33,9 @@ services:
   protonmail-bridge:
     image: dancwilliams/protonmail-bridge:latest
     ports:
-      - 1025:25/tcp # SMTP only (no IMAP) 
-      # - 1143:143/tcp
+      # - 127.0.0.1:1025:25/tcp # Only expose to localhost not entire LAN
+      - 1025:25/tcp # Expose to LAN
+      # - 1143:143/tcp # SMTP only (no IMAP / sending & syncing)
     restart: unless-stopped
     volumes:
       - protonmail:/root
