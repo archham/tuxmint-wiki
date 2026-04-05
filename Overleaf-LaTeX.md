@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-05T08:23:19.467Z
+date: 2026-04-05T08:24:38.712Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -54,7 +54,7 @@ groups
 * [Ubuntu 20.04 TexLive full](https://docs.vultr.com/how-to-install-overleaf-community-edition-on-ubuntu-20-04-lts) 
 * [Old scheme full](https://github.com/overleaf/overleaf/wiki/Quick-Start-Guide)
 
-**Installation successfully tested on the 19.07.2024**
+**Installation successfully tested on the 05.04.2026**
 
 ``` bash
 # Make a directory and cahnge the permissions
