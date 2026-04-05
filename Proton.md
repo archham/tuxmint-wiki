@@ -2,7 +2,7 @@
 title: Proton
 description: Infos about Proton.me services
 published: true
-date: 2026-04-05T09:37:09.224Z
+date: 2026-04-05T09:39:54.327Z
 tags: docker, proton, mail
 editor: markdown
 dateCreated: 2026-04-05T08:42:00.076Z
@@ -90,3 +90,5 @@ Username:  <YOUR_MAIL>
 Password:  generated_pw
 Security:  STARTTLS
 ```
+Start the bridge
+``docker compose up -d``
