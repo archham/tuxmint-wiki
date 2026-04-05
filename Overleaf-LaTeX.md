@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-03T09:52:32.269Z
+date: 2026-04-05T08:23:19.467Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -125,7 +125,7 @@ Description=Overleaf Community Edition
 [Service]
 Type=oneshot
 WorkingDirectory=/opt/overleaf-toolkit
-ExecStart=/opt/overleaf-toolkit/bin/up -d
+ExecStart=/opt/overleaf-toolkit/bin/start
 ExecStop=/opt/overleaf-toolkit/bin/stop
 RemainAfterExit=yes
 
