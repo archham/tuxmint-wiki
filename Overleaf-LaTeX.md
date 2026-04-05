@@ -2,7 +2,7 @@
 title: Overleaf-LaTeX
 description: 
 published: true
-date: 2026-04-05T16:10:23.296Z
+date: 2026-04-05T16:17:01.029Z
 tags: docker, latex
 editor: markdown
 dateCreated: 2026-03-16T13:51:51.795Z
@@ -202,7 +202,7 @@ After committing the changes, update the `config/version` accordingly. Then run 
 Note that you will need to repeat these steps when you upgrade (``./upgrading.md``).
 
 
-### Update
+### Update [^2][^3]
 
 ``` bash
 # Stop service
@@ -219,7 +219,7 @@ cda
 
 # Start service again
 systemctl start overleaf.service
-
-## Source: https://github.com/overleaf/toolkit/blob/master/doc/upgrading.md
 ```
 [^1]: <https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md#create-the-first-admin-account>
+[^2]: <https://docs.overleaf.com/on-premises/maintenance/data-and-backups>
+[^3]: <https://github.com/overleaf/toolkit/blob/master/doc/upgrading.md>
