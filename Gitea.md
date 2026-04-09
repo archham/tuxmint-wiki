@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T15:37:11.656Z
+date: 2026-04-09T15:39:09.968Z
 tags: linux, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -456,38 +456,32 @@ ls -lZ /etc/gitea/app.ini /var/lib/gitea/data/
 # drwxr-xr-x. 2 git git system_u:object_r:gitea_data_t:s0  6 Jul 11 07:23 actions_artifacts
 # [...]
 ```
-[index.php?title=Category:Linux](index.php?title=Category:Linux "index.php?title=Category:Linux"){.wikilink}
-[index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
-[index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
 
 ## Define additional SELinux rules
 
 - Reset alerts and verify alerts
-
-`> /var/log/audit/audit.log`\
-`systemctl restart gitea`
-
+```bash
+> /var/log/audit/audit.log
+systemctl restart gitea
+```
 - Now test the application with all its functions
-
-<!-- -->
-
 - verify new alerts
-
-`sealert -a /var/log/audit/audit.log `\
-`grep 'run: sealert' /var/log/messages `\
-`ausearch  --raw | audit2allow`
-
+```bash
+sealert -a /var/log/audit/audit.log
+grep 'run: sealert' /var/log/messages
+ausearch  --raw | audit2allow
+```
 - Review, understand and then add this to gitea.te, gitea.fc, gitea.if
-- Then rebuild/install policy with \`bash gitea.sh\`
-
-<!-- -->
-
+- Then rebuild/install policy with `bash gitea.sh`
 - finally start over until you have no violations anymore
-
-\> /var/log/audit/audit.log reboot sealert -a /var/log/audit/audit.log
-grep \'run: sealert\' /var/log/messages ausearch \--raw \| audit2allow
-ausearch -c \'git\' \--raw \| audit2allow -R
-
+```bash
+> /var/log/audit/audit.log
+reboot
+sealert -a /var/log/audit/audit.log
+grep 'run: sealert' /var/log/messages
+ausearch  --raw | audit2allow
+ausearch -c 'git' --raw | audit2allow -R
+```
 # ReEnable SELinux
 
 Now we switch back to enforcing and test again
