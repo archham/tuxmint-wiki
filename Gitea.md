@@ -2,17 +2,17 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T12:05:02.446Z
-tags: linux, gitea, git
+date: 2026-04-09T12:52:45.195Z
+tags: linux, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
 ---
 
 The instructions bellow are sourced 100% from [bitbull.ch - Gitea Setup on Rocky10 with SELinux](https://wiki.bitbull.ch/en/gitea) and are here for archival purposes only. All credit to him :-) Visit his site and enjoy the massive knowledge base!
 
-Sourced: 17.10.2025
+Sourced: 09.04.2026
 
-## My Notes {#my_notes}
+## My Notes
 
 > **Write down!**
 > - MySQL
