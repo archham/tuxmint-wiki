@@ -1,6 +1,16 @@
+---
+title: Gitea
+description: 
+published: true
+date: 2026-04-09T11:35:19.779Z
+tags: 
+editor: markdown
+dateCreated: 2026-03-16T13:50:51.959Z
+---
+
 The instructions bellow are sourced 100% from [bitbull.ch - Gitea Setup
 on Rocky10 with
-SELinux](https://www.bitbull.ch/wiki/index.php?title=Gitea_Setup_on_Rocky10_with_SELinux)
+SELinux](https://wiki.bitbull.ch/en/gitea)
 and are here for archival purposes only. All credit to him :-) Visit his
 site and enjoy the massive knowledge base!
 
@@ -9,17 +19,11 @@ Sourced: 17.10.2025
 ## My Notes {#my_notes}
 
 > **Write down!**
->
 > - MySQL
->
 > Root PW DB=\*\*\*\*
->
 > MARIADB_PW=\*\*\*\*
->
 > - Gitea
->
 > ADMIN_USER=\*\*\*\*
->
 > ADMIN_PW=\*\*\*\*
 
 SQL secure installation
@@ -38,36 +42,25 @@ y
 ```
 
 Changed Gitea Version
-
 ``` bash
 GITEA_VERSION=1.24.6
 ```
 
-Own changes made to app.ini file
-
-<div class="toccolours mw-collapsible mw-collapsed" style="width:60%">
-
-File: `<b>`{=html}app.ini`</b>`{=html} Modified: `<b>`{=html}2025-11-15
-14:44:00`</b>`{=html}
-
-<div class="mw-collapsible-content">
-
-\# Moved vars to top
-
+Own changes made to app.ini file ``app.ini`` **2025-11-15**
+```ini
+# Moved vars to top
 APP_NAME
-
 RUN_USER
-
 RUN_MODE
 
-\# Added vars to \[security\]
-
+# Added vars to [security]
 REVERSE_PROXY_LIMIT
-
 REVERSE_PROXY_TRUSTED_PROXIES
 
-\# Added \[mailer\] \[migrations\] \[log\] \[picture\] categories
+# Added [mailer] [migrations] [log] [picture] categories
+```
 
+```ini
     cat <<EOF >/etc/gitea/app.ini
     APP_NAME = Gitea: Git with a cup of tea
     RUN_USER = git
@@ -128,11 +121,8 @@ REVERSE_PROXY_TRUSTED_PROXIES
 
 
     EOF
-
-</div>
-</div>
-
-Own changes made to nginx configuration gitea.conf file
+```
+Own changes made to nginx configuration ``gitea.conf`` file **2025-11-19**
 
 <div class="toccolours mw-collapsible mw-collapsed" style="width:60%">
 
