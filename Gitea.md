@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T15:43:59.571Z
+date: 2026-04-09T15:47:24.779Z
 tags: linux, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -12,7 +12,7 @@ The instructions bellow are sourced 100% from [bitbull.ch - Gitea Setup on Rocky
 
 Sourced: 09.04.2026
 
-## My Notes
+# My Notes
 
 > **Write down!**
 > - MySQL
