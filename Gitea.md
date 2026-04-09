@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T11:40:12.774Z
+date: 2026-04-09T11:42:09.669Z
 tags: linux, gitea, git
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -156,18 +156,17 @@ Own changes made to nginx configuration ``gitea.conf`` file **2025-11-19**
     EOF
 ```
 # Setup
-
 - OS: Rocky Linux 10 minimal
 - FQDN: gitea01.domain.tld
 
-## Disable SELinux {#disable_selinux}
+## Disable SELinux
 
 For now, we set selinux to permissive, once all rules are set and we have no violations anymore, we set to enforce again
 ```bash
     setenforce 0
     sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
 ```
-## VARS and Functions {#vars_and_functions}
+## VARS and Functions
 ```bash
     HOST=$(hostname -f)
 
@@ -177,18 +176,18 @@ For now, we set selinux to permissive, once all rules are set and we have no vio
             tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
     }
 ```
-## Install software {#install_software}
+## Install software
 install reverse proxy and base software
 ```bash
 dnf -y install openssl wget nginx git policycoreutils-python-utils
 ```
-## Move system sshd port to 222 {#move_system_sshd_port_to_222}
+## Move system sshd port to 222
 
 `semanage port -a -t ssh_port_t -p tcp 222`\
 `sed -i 's/^#Port 22/Port 222/' /etc/ssh/sshd_config`\
 `systemctl restart sshd`
 
-## Configure Firewall {#configure_firewall}
+## Configure Firewall
 
 - open https
 
@@ -206,7 +205,7 @@ dnf -y install openssl wget nginx git policycoreutils-python-utils
 
 `firewall-cmd --reload`
 
-## Install/Configure Mariadb {#installconfigure_mariadb}
+## Install/Configure Mariadb
 
 - install and enable
 
@@ -230,7 +229,7 @@ dnf -y install openssl wget nginx git policycoreutils-python-utils
     FLUSH PRIVILEGES;
     EOF
 
-## Install Gitea {#install_gitea}
+## Install Gitea
 
 - create gitea user
 
@@ -325,7 +324,7 @@ dnf -y install openssl wget nginx git policycoreutils-python-utils
 `systemctl daemon-reload`\
 `systemctl enable --now gitea`
 
-## nginx configuration {#nginx_configuration}
+## nginx configuration
 
     openssl req -x509 -newkey rsa:4096 -nodes \
       -keyout /etc/pki/tls/private/gitea.key \
@@ -367,7 +366,7 @@ dnf -y install openssl wget nginx git policycoreutils-python-utils
 
 `systemctl enable --now nginx`
 
-## create gitea application admin {#create_gitea_application_admin}
+## create gitea application admin
 
 Change to git user, which has no sell as default
 
@@ -387,9 +386,9 @@ Change to git user, which has no sell as default
     gitea admin user create --admin --username $ADMIN_USER --password "$ADMIN_PW" --email admin@domain.tld --config /etc/gitea/app.ini
     exit
 
-# SELinux configuration {#selinux_configuration}
+# SELinux configuration
 
-## Install selinux tools as root {#install_selinux_tools_as_root}
+## Install selinux tools as root
 
 `dnf install -y policycoreutils-devel checkpolicy setroubleshoot-server setools-console`\
 `> /var/log/audit/audit.log`\
@@ -404,13 +403,13 @@ Change to git user, which has no sell as default
 [index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
 [index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
 
-## Generate policy default ruleset {#generate_policy_default_ruleset}
+## Generate policy default ruleset
 
 `for r in appstream baseos extras ; do dnf config-manager --set-disabled $r; done`\
 `sepolicy generate --init /usr/local/bin/gitea`\
 `for r in appstream baseos extras ; do dnf config-manager --set-enabled $r; done`
 
-## Modify ruleset defaults {#modify_ruleset_defaults}
+## Modify ruleset defaults
 
 Rename gitea_var_lib_t
 
@@ -448,7 +447,7 @@ Rename gitea_var_lib_t
 [index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
 [index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
 
-## Apply new context lables {#apply_new_context_lables}
+## Apply new context lables
 
 - Label ports
 
@@ -488,7 +487,7 @@ Rename gitea_var_lib_t
 [index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
 [index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
 
-## Define additional SELinux rules {#define_additional_selinux_rules}
+## Define additional SELinux rules
 
 - Reset alerts and verify alerts
 
@@ -516,7 +515,7 @@ Rename gitea_var_lib_t
 grep \'run: sealert\' /var/log/messages ausearch \--raw \| audit2allow
 ausearch -c \'git\' \--raw \| audit2allow -R
 
-# ReEnable SELinux {#reenable_selinux}
+# ReEnable SELinux
 
 Now we switch back to enforcing and test again
 
@@ -527,7 +526,7 @@ Now we switch back to enforcing and test again
 `reboot`\
 `sealert -a /var/log/audit/audit.log `
 
-## Test if rules are working as expected {#test_if_rules_are_working_as_expected}
+## Test if rules are working as expected
 
 `chcon -t home_root_t /etc/gitea/app.ini`\
 `> /var/log/audit/audit.log`\
@@ -559,7 +558,7 @@ Now we switch back to enforcing and test again
 
 # Appendix
 
-## Final policy files {#final_policy_files}
+## Final policy files
 
 </pre>
 <div class="toccolours mw-collapsible mw-collapsed" style="width:60%">
@@ -797,7 +796,7 @@ File: `<b>`{=html}gitea.te`</b>`{=html} Modified: `<b>`{=html}2025-07-12
 </div>
 </div>
 
-## Boolean Analysis: domain_can_mmap_files {#boolean_analysis_domain_can_mmap_files}
+## Boolean Analysis: domain_can_mmap_files
 
 - Lets see what domain_can_mmap_files contains
 
