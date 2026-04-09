@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T15:39:09.968Z
+date: 2026-04-09T15:40:12.837Z
 tags: linux, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -485,43 +485,41 @@ ausearch -c 'git' --raw | audit2allow -R
 # ReEnable SELinux
 
 Now we switch back to enforcing and test again
-
-`setenforce 1`\
-`sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config`\
-`grubby --update-kernel ALL --remove-args selinux`\
-`touch /.autorelabel`\
-`reboot`\
-`sealert -a /var/log/audit/audit.log `
-
+```bash
+setenforce 1
+sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config
+grubby --update-kernel ALL --remove-args selinux
+touch /.autorelabel
+reboot
+sealert -a /var/log/audit/audit.log
+```
 ## Test if rules are working as expected
-
-`chcon -t home_root_t /etc/gitea/app.ini`\
-`> /var/log/audit/audit.log`\
-`reboot`\
-`sealert -a /var/log/audit/audit.log`\
-`restorecon -FRv /etc/gitea/`\
-`> /var/log/audit/audit.log`\
-`reboot`\
-`sealert -a /var/log/audit/audit.log`
-
-    semanage port -a -t ssh_port_t -p tcp 2222
-    semanage port -a -t ssh_port_t -p tcp 3000
-    > /var/log/audit/audit.log                
-    reboot                                    
-    sealert -a /var/log/audit/audit.log 
-    ss -tan # port 2222 and 3000 are not listening!
-    semanage port -a -t gitea_port_t -p tcp 2222
-    semanage port -a -t gitea_port_t -p tcp 3000
-    semanage port -l | grep gitea_
-       gitea_port_t                   tcp      2222, 3000
-    > /var/log/audit/audit.log
-    reboot
-    sealert -a /var/log/audit/audit.log
-    ss -tan # port 2222 and 3000 are NOW listening!
-
-[index.php?title=Category:Linux](index.php?title=Category:Linux "index.php?title=Category:Linux"){.wikilink}
-[index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
-[index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
+```bash
+chcon -t home_root_t /etc/gitea/app.ini
+> /var/log/audit/audit.log
+reboot
+sealert -a /var/log/audit/audit.log
+restorecon -FRv /etc/gitea/
+> /var/log/audit/audit.log
+reboot
+sealert -a /var/log/audit/audit.log
+```
+```
+semanage port -a -t ssh_port_t -p tcp 2222
+semanage port -a -t ssh_port_t -p tcp 3000
+> /var/log/audit/audit.log
+reboot
+sealert -a /var/log/audit/audit.log
+ss -tan # port 2222 and 3000 are not listening!
+semanage port -a -t gitea_port_t -p tcp 2222
+semanage port -a -t gitea_port_t -p tcp 3000
+semanage port -l | grep gitea_
+# gitea_port_t                   tcp      2222, 3000
+> /var/log/audit/audit.log
+reboot
+sealert -a /var/log/audit/audit.log
+ss -tan # port 2222 and 3000 are NOW listening!
+```
 
 # Appendix
 
