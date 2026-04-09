@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T11:52:48.584Z
+date: 2026-04-09T12:05:02.446Z
 tags: linux, gitea, git
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -198,15 +198,17 @@ firewall-cmd --permanent --add-forward-port=port=22:proto=tcp:toport=2222
 firewall-cmd --reload
 ```
 ## Install/Configure Mariadb
+- install and enable
 ```bash
-# install and enable
 dnf install -y mariadb-server
 systemctl enable --now mariadb
-
-# secure mariadb
+```
+- secure mariadb
+```bash
 mysql_secure_installation
-
-# create gitea database user
+```
+- create gitea database user
+```bash
 MARIADB_PW=$(genpasswd)
 echo MARIADB_PW=$MARIADB_PW
 mysql -u root -p <<EOF
@@ -217,107 +219,99 @@ FLUSH PRIVILEGES;
 EOF
 ```
 ## Install Gitea
-
 - create gitea user
-
-<!-- -->
-
-    useradd --system --shell /usr/bin/false --comment 'Git Version Control' --create-home --home-dir /var/lib/gitea git
-    mkdir -p /var/lib/gitea/data
-    mkdir -p /etc/gitea
-    chown -R git:git /var/lib/gitea
-    chown root:git /etc/gitea
-    chmod 770 /etc/gitea
-
+```bash
+useradd --system --shell /usr/bin/false --comment 'Git Version Control' --create-home --home-dir /var/lib/gitea git
+mkdir -p /var/lib/gitea/data
+mkdir -p /etc/gitea
+chown -R git:git /var/lib/gitea
+chown root:git /etc/gitea
+chmod 770 /etc/gitea
+```
 - Install gitea
-
-<!-- -->
-
+```bash
     GITEA_VERSION=1.23.8
     wget -O /usr/local/bin/gitea https://dl.gitea.com/gitea/$GITEA_VERSION/gitea-$GITEA_VERSION-linux-amd64
     chown root:git /usr/local/bin/gitea
     chmod 750 /usr/local/bin/gitea
-
+```
 - create systemd service
+```bash
+cat <<EOF >/etc/systemd/system/gitea.service
+[Unit]
+Description=Gitea (Git with a cup of tea)
+After=syslog.target
+After=network.target
+Requires=mariadb.service
 
-<!-- -->
+[Service]
+RestartSec=2s
+Type=simple
+User=git
+Group=git
+WorkingDirectory=/var/lib/gitea/
+ExecStart=/usr/local/bin/gitea web --config /etc/gitea/app.ini
+Restart=always
+Environment=USER=git HOME=/var/lib/gitea GITEA_WORK_DIR=/var/lib/gitea
 
-    cat <<EOF >/etc/systemd/system/gitea.service
-    [Unit]
-    Description=Gitea (Git with a cup of tea)
-    After=syslog.target
-    After=network.target
-    Requires=mariadb.service
-
-    [Service]
-    RestartSec=2s
-    Type=simple
-    User=git
-    Group=git
-    WorkingDirectory=/var/lib/gitea/
-    ExecStart=/usr/local/bin/gitea web --config /etc/gitea/app.ini
-    Restart=always
-    Environment=USER=git HOME=/var/lib/gitea GITEA_WORK_DIR=/var/lib/gitea
-
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-
+[Install]
+WantedBy=multi-user.target
+EOF
+```
 - create gitea config
+```bash
+cat <<EOF >/etc/gitea/app.ini
+WORK_PATH = /var/lib/gitea/
 
-<!-- -->
+[server]
+APP_NAME = Gitea: Git with a cup of tea
+RUN_USER = git
+RUN_MODE = prod
+HTTP_PORT = 3000
+ROOT_URL = https://$HOST
+SSH_DOMAIN = $HOST
+START_SSH_SERVER = true
+SSH_PORT         = 22
+SSH_LISTEN_PORT  = 2222
+OFFLINE_MODE = false
 
-    cat <<EOF >/etc/gitea/app.ini
-    WORK_PATH = /var/lib/gitea/
+[database]
+DB_TYPE = mysql
+HOST = 127.0.0.1:3306
+NAME = gitea
+USER = gitea
+PASSWD = $MARIADB_PW
+SSL_MODE = disable
 
-    [server]
-    APP_NAME = Gitea: Git with a cup of tea
-    RUN_USER = git
-    RUN_MODE = prod
-    HTTP_PORT = 3000
-    ROOT_URL = https://$HOST
-    SSH_DOMAIN = $HOST
-    START_SSH_SERVER = true
-    SSH_PORT         = 22
-    SSH_LISTEN_PORT  = 2222
-    OFFLINE_MODE = false
+[security]
+INSTALL_LOCK = true
+SECRET_KEY = $(genpasswd 32)
+INTERNAL_TOKEN = $(genpasswd 32)
 
-    [database]
-    DB_TYPE = mysql
-    HOST = 127.0.0.1:3306
-    NAME = gitea
-    USER = gitea
-    PASSWD = $MARIADB_PW
-    SSL_MODE = disable
+[lfs]
+PATH = /var/lib/gitea/data/lfs
 
-    [security]
-    INSTALL_LOCK = true
-    SECRET_KEY = $(genpasswd 32)
-    INTERNAL_TOKEN = $(genpasswd 32)
+[service]
+DISABLE_REGISTRATION = true
 
-    [lfs]
-    PATH = /var/lib/gitea/data/lfs
+[oauth2]
+JWT_SECRET = $(genpasswd 32)
+EOF
+```
+```bash
+chown root:git /etc/gitea/app.ini
+chmod 660 /etc/gitea/app.ini
 
-    [service]
-    DISABLE_REGISTRATION = true
-
-    [oauth2]
-    JWT_SECRET = $(genpasswd 32)
-    EOF
-
-`chown root:git /etc/gitea/app.ini`\
-`chmod 660 /etc/gitea/app.ini`
-
-`systemctl daemon-reload`\
-`systemctl enable --now gitea`
-
+systemctl daemon-reload
+systemctl enable --now gitea
+```
 ## nginx configuration
-
-    openssl req -x509 -newkey rsa:4096 -nodes \
-      -keyout /etc/pki/tls/private/gitea.key \
-      -out /etc/pki/tls/certs/gitea.crt \
-      -days 3650 -subj "/CN=$HOST"
-
+```bash
+openssl req -x509 -newkey rsa:4096 -nodes \
+  -keyout /etc/pki/tls/private/gitea.key \
+  -out /etc/pki/tls/certs/gitea.crt \
+  -days 3650 -subj "/CN=$HOST"
+```
 `chown root:root /etc/pki/tls/private/gitea.key`\
 `chmod 600 /etc/pki/tls/private/gitea.key`
 
