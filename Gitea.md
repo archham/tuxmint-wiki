@@ -2,8 +2,8 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T15:47:24.779Z
-tags: linux, gitea, git, selinux, security
+date: 2026-04-09T15:53:43.779Z
+tags: linux, ansible, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
 ---
@@ -754,4 +754,70 @@ sesearch -b domain_can_mmap_files -A
 # allow domain file_type:chr_file map; [ domain_can_mmap_files ]:True
 # allow domain file_type:file map; [ domain_can_mmap_files ]:True
 # allow domain file_type:lnk_file map; [ domain_can_mmap_files ]:True
+```
+
+# Update
+Update process with ansible. Uses mechanic to either choose a specific version or auto chooses the latest stable version.
+
+Choose `auto` or a specific desired version to start the playbook:
+```
+ansible-playbook update-gitea.yml -e "ao_version=auto"
+```
+Playbook `update-gitea.yml`
+```yaml
+- hosts: gitea01.domain.tld
+  vars:
+    ansible_become: true
+  tasks:
+  - name: Find upgrade Details
+    shell: |
+      export PATH=$PATH:/usr/local/bin
+      cd /usr/local/bin/
+      if [ "{{ ao_version }}" == "auto" ]
+      then
+        echo "INFO: Version is auto"
+        export VERSION=$(curl -L -s https://github.com/go-gitea/gitea/releases/latest | grep "<title>" | grep -oP '(?<=Release v)[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+      else
+        echo "INFO: Version is manual: $RD_OPTION_AO_VERSION"
+        export VERSION={{ ao_version }}
+      fi
+      echo INFO: VERSION=$VERSION
+      echo "Waiting 30s to apply the version, mentioned above, cancel if wrong"
+    register: cmd_details
+     
+  - name: Show Upgrade Details
+    debug: var=cmd_details.stdout_lines
+
+  - name: Wait 30s to give you a chance for canceling the job
+    pause:
+      seconds: 30
+
+  - name: Upgrade Gitea
+    shell: |
+      export PATH=$PATH:/usr/local/bin
+      cd /usr/local/bin/
+      if [ "{{ ao_version }}" == "auto" ]
+      then
+        echo "INFO: Version is auto"
+        #Problem hier kann nicht von Stable unterscheiden werden
+        #export VERSION=$(curl -L -s https://dl.gitea.com/gitea/ | grep /gitea/ | head -1 | sed 's/.*gitea\///' | cut -d/ -f1)
+        export VERSION=$(curl -L -s https://github.com/go-gitea/gitea/releases/latest | grep "<title>" | grep -oP '(?<=Release v)[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+      else
+        echo "INFO: Version is manual: $RD_OPTION_AO_VERSION"
+        export VERSION={{ ao_version }}
+      fi
+      echo INFO: VERSION=$VERSION
+      test -f gitea-$VERSION-linux-amd64 || wget --quiet https://dl.gitea.com/gitea/$VERSION/gitea-$VERSION-linux-amd64 || exit 1
+      chmod 750 gitea-$VERSION-linux-amd64
+      chown root:git /usr/local/bin/gitea-$VERSION-linux-amd64
+      rm -fv gitea
+      ln -sv gitea-$VERSION-linux-amd64 gitea
+      ls -l
+      systemctl restart gitea
+      systemctl status gitea
+    register: cmd
+    
+  - name: print cmd output
+    debug:
+       var: cmd
 ```
