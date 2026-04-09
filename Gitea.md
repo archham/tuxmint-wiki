@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T11:42:09.669Z
+date: 2026-04-09T11:44:11.074Z
 tags: linux, gitea, git
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -121,8 +121,7 @@ REVERSE_PROXY_TRUSTED_PROXIES
 Own changes made to nginx configuration ``gitea.conf`` file **2025-11-19**
 ```bash
 # Added defined upload size limit
-
-`  client_max_body_size 50M;  # <– increase upload limit`
+client_max_body_size 50M;  # <– increase upload limit
 ```
 ```bash
     cat <<EOF >/etc/nginx/conf.d/gitea.conf
@@ -182,11 +181,11 @@ install reverse proxy and base software
 dnf -y install openssl wget nginx git policycoreutils-python-utils
 ```
 ## Move system sshd port to 222
-
-`semanage port -a -t ssh_port_t -p tcp 222`\
-`sed -i 's/^#Port 22/Port 222/' /etc/ssh/sshd_config`\
-`systemctl restart sshd`
-
+```bash
+semanage port -a -t ssh_port_t -p tcp 222
+sed -i 's/^#Port 22/Port 222/' /etc/ssh/sshd_config
+systemctl restart sshd
+```
 ## Configure Firewall
 
 - open https
