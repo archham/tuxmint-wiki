@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T11:38:18.023Z
+date: 2026-04-09T11:40:12.774Z
 tags: linux, gitea, git
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -162,14 +162,13 @@ Own changes made to nginx configuration ``gitea.conf`` file **2025-11-19**
 
 ## Disable SELinux {#disable_selinux}
 
-For now, we set selinux to permissive, once all rules are set and we
-have no violations anymore, we set to enforce again
-
+For now, we set selinux to permissive, once all rules are set and we have no violations anymore, we set to enforce again
+```bash
     setenforce 0
     sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
-
+```
 ## VARS and Functions {#vars_and_functions}
-
+```bash
     HOST=$(hostname -f)
 
     genpasswd() {
@@ -177,13 +176,12 @@ have no violations anymore, we set to enforce again
             [ "$l" == "" ] && l=20
             tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
     }
-
+```
 ## Install software {#install_software}
-
 install reverse proxy and base software
-
-`dnf -y install openssl wget nginx git policycoreutils-python-utils`
-
+```bash
+dnf -y install openssl wget nginx git policycoreutils-python-utils
+```
 ## Move system sshd port to 222 {#move_system_sshd_port_to_222}
 
 `semanage port -a -t ssh_port_t -p tcp 222`\
