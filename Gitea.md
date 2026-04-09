@@ -2,7 +2,7 @@
 title: Gitea
 description: 
 published: true
-date: 2026-04-09T15:35:38.338Z
+date: 2026-04-09T15:37:11.656Z
 tags: linux, gitea, git, selinux, security
 editor: markdown
 dateCreated: 2026-03-16T13:50:51.959Z
@@ -429,39 +429,33 @@ bash gitea.sh
 ## Apply new context lables
 
 - Label ports
-
-`semanage port -a -t gitea_port_t -p tcp 2222`\
-`semanage port -a -t gitea_port_t -p tcp 3000`
-
+```bash
+semanage port -a -t gitea_port_t -p tcp 2222
+semanage port -a -t gitea_port_t -p tcp 3000
+```
 - Restart gitea
-
-`systemctl restart gitea`
-
+```bash
+systemctl restart gitea
+```
 - Verify domain
-
-<!-- -->
-
-     ps -ef -Z | grep gitea
-       system_u:system_r:gitea_t:s0    git         1714       1 10 07:41 ?        00:00:01 /usr/local/bin/gitea web --config /etc/gitea/app.ini
-
+```bash
+ps -ef -Z | grep gitea
+# system_u:system_r:gitea_t:s0    git         1714       1 10 07:41 ?        00:00:01 /usr/local/bin/gitea web --config /etc/gitea/app.ini
+```
 - verify port lables
-
-<!-- -->
-
-    semanage port --list | grep gitea
-       gitea_port_t                   tcp      2222, 3000
-
+```bash
+semanage port --list | grep gitea
+# gitea_port_t                   tcp      2222, 3000
+```
 - verify file lables
+```bash
+ls -lZ /etc/gitea/app.ini /var/lib/gitea/data/
+# -rw-rw----.  1 root git system_u:object_r:gitea_conf_t:s0  681 Jul 11 07:23 /etc/gitea/app.ini
 
-<!-- -->
-
-    ls -lZ /etc/gitea/app.ini /var/lib/gitea/data/
-       -rw-rw----.  1 root git system_u:object_r:gitea_conf_t:s0  681 Jul 11 07:23 /etc/gitea/app.ini
-
-       /var/lib/gitea/data/:
-       drwxr-xr-x. 2 git git system_u:object_r:gitea_data_t:s0  6 Jul 11 07:23 actions_artifacts
-       [...]
-
+# /var/lib/gitea/data/:
+# drwxr-xr-x. 2 git git system_u:object_r:gitea_data_t:s0  6 Jul 11 07:23 actions_artifacts
+# [...]
+```
 [index.php?title=Category:Linux](index.php?title=Category:Linux "index.php?title=Category:Linux"){.wikilink}
 [index.php?title=Category:SELinux](index.php?title=Category:SELinux "index.php?title=Category:SELinux"){.wikilink}
 [index.php?title=Category:Security](index.php?title=Category:Security "index.php?title=Category:Security"){.wikilink}
