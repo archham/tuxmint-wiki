@@ -1,8 +1,18 @@
-## Introduction
+---
+title: Github
+description: 
+published: true
+date: 2026-04-20T13:38:50.283Z
+tags: git, github
+editor: markdown
+dateCreated: 2026-03-16T13:50:59.158Z
+---
+
+# Introduction
 
 Here are some usefull infos about Github and how to use it.
 
-## Configurations
+# Configurations
 
 ``` bash
 # Get started: Name, Email, Editor 
@@ -11,15 +21,14 @@ git config --global user.email "email@example.com"
 git config --global core.editor "vim"
 ```
 
-### Tokens
+## Tokens
 
 Go to Settings / Developer Settings / Personal access tokens
 
-Create a Token with the needed permissions.
+Create a Token with the needed permissions.[^1]
 
-<https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>
 
-### Default text editor {#default_text_editor}
+## Default text editor {#default_text_editor}
 
 ``` bash
 git config --global core.editor "vim"
@@ -36,4 +45,4 @@ vi ~/.gitconfig
 -----------------------
 ```
 
-[Category:Git](Category:Git "Category:Git"){.wikilink}
+[^1]: <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>
