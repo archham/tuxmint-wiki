@@ -2,7 +2,7 @@
 title: Github
 description: 
 published: true
-date: 2026-04-20T13:38:50.283Z
+date: 2026-04-20T13:39:01.972Z
 tags: git, github
 editor: markdown
 dateCreated: 2026-03-16T13:50:59.158Z
@@ -28,7 +28,7 @@ Go to Settings / Developer Settings / Personal access tokens
 Create a Token with the needed permissions.[^1]
 
 
-## Default text editor {#default_text_editor}
+## Default text editor
 
 ``` bash
 git config --global core.editor "vim"
