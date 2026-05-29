@@ -2,7 +2,7 @@
 title: SFTP Server on Rocky Linux 9
 description: Create a secure SFTP Server on Rocky Linux 9 with best practice
 published: true
-date: 2026-05-29T09:19:23.172Z
+date: 2026-05-29T09:34:08.631Z
 tags: linux, sftp
 editor: markdown
 dateCreated: 2026-05-29T09:07:56.454Z
@@ -332,6 +332,13 @@ ssh -p 2222 adminuser@server.example.com
 Should work.
 
 ---
+
+# 11. Delete Users
+
+```bash
+rm -rf /sftp/DESIRED_USER/
+userdel DESIRED_USER
+```
 
 # Expected Security Model
 
