@@ -2,7 +2,7 @@
 title: SFTP Server on Rocky Linux 9
 description: Create a secure SFTP Server on Rocky Linux 9 with best practice
 published: true
-date: 2026-05-29T09:34:08.631Z
+date: 2026-05-29T09:39:22.426Z
 tags: linux, sftp
 editor: markdown
 dateCreated: 2026-05-29T09:07:56.454Z
@@ -189,7 +189,12 @@ Expected:
 
 # 7. User Provisioning Script
 
-File: `add_new_sftp_user.sh`
+File: `add-new-sftp-user`
+
+```bash
+touch /usr/local/sbin/add-new-sftp-user && chmod 700 /usr/local/sbin/add-new-sftp-user
+vi /usr/local/sbin/add-new-sftp-user
+```
 
 ```bash
 #!/usr/bin/env bash
