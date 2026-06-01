@@ -2,8 +2,8 @@
 title: SFTP Server on Rocky Linux 9
 description: Create a secure SFTP Server on Rocky Linux 9 with best practice
 published: true
-date: 2026-05-29T09:39:22.426Z
-tags: linux, sftp
+date: 2026-06-01T11:17:38.822Z
+tags: linux, selinux, sftp
 editor: markdown
 dateCreated: 2026-05-29T09:07:56.454Z
 ---
